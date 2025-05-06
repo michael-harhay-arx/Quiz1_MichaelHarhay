@@ -1,0 +1,3 @@
+Quiz 1:
+6. a) What is wrong with this commit? -> Incomplete git commit message.
+   b) How would you resolve this problem? -> Use the command 'git commit --amend', and type in a more descriptive message.
