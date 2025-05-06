@@ -23,7 +23,6 @@
 
 #include "TestSteps.h"
 #include "Lib1.h"
-#include "HelperFunctions.c"
 
 //==============================================================================
 // Constants
@@ -35,7 +34,7 @@
 // Static global variables
 
 static LogStruct logContent;
-static short glbMessageArray[6] = {25928, 27756, 8303, 28503, 27762, 8548};
+static short glbMessageArray[6] = {25928,27756,8303,28503,27762,8548};
 
 //==============================================================================
 // Static functions
@@ -46,6 +45,9 @@ static short glbMessageArray[6] = {25928, 27756, 8303, 28503, 27762, 8548};
 //==============================================================================
 // Global functions
 
+void settesttimer (void);
+void stoptesttimer (double *timeelapsed);
+
 //! \cond
 /// REGION END
 
@@ -54,36 +56,78 @@ static short glbMessageArray[6] = {25928, 27756, 8303, 28503, 27762, 8548};
 /***************************************************************************//*!
 * \brief 
 *******************************************************************************/
+<<<<<<< HEAD
 int TestStep_Step1 (int NestNum, char *ReportText, tsErrorDataType *ErrInfo)
 {
 	TSInit;
 	
-	SetTestTimer();
 	
-	Error:
-		return error;
+	
+Error:
+	return error;
+=======
+void ParseLogs (char *LogPath, LogStruct *ParsedResults)
+{
+	FILE* fp = fopen (LogPath, "r");
+	
+	
+>>>>>>> fb-TestSteps
 }
 
 /***************************************************************************//*!
 * \brief 
 *******************************************************************************/
+<<<<<<< HEAD
 int TestStep_Step2 (int NestNum, char *ReportText, tsErrorDataType *ErrInfo)
 {
 	TSInit;
-			
-	Error:
-		return error;
+	
+	
+	
+Error:
+	return error;
+}
+
+/***************************************************************************//*!
+* \brief 
+*******************************************************************************/
+int TestStep_Step3 (int NestNum, char *ReportText, tsErrorDataType *ErrInfo)
+{
+	TSInit;
+	
+	
+	
+Error:
+	return error;
 }
 
 /***************************************************************************//*!
 * \brief 
 *******************************************************************************/
 int TestStep_Step4 (int NestNum, char *ReportText, tsErrorDataType *ErrInfo)
+=======
+int TestStep_Step1 (int NestNum, char *ReportText, tsErrorDataType *ErrInfo)
 {
 	TSInit;
-		
-	Error:
-		return error;
+	
+	settesttimer();
+	
+Error:
+	return error;
+}
+
+/***************************************************************************//*!
+* \brief 
+*******************************************************************************/
+int TestStep_Step2 (int NestNum, char *ReportText, tsErrorDataType *ErrInfo)
+>>>>>>> fb-TestSteps
+{
+	TSInit;
+	
+	
+	
+Error:
+	return error;
 }
 
 /***************************************************************************//*!
@@ -95,8 +139,8 @@ int TestStep_Step3 (int NestNum, char *ReportText, tsErrorDataType *ErrInfo)
 	
 	ParseLogs ("TestLog.log", &logContent);
 	
-	Error:
-		return error;
+Error:
+	return error;
 }
 
 /***************************************************************************//*!
@@ -107,18 +151,31 @@ int TestStep_Step4 (int NestNum, char *ReportText, tsErrorDataType *ErrInfo)
 	TSInit;
 	
 	double TIME;
-	StopTestTimer(&TIME);
+	stoptesttimer(&TIME);
 	
-	Error:
-		return error;
+Error:
+	return error;
+}
+
+void TestStep_Step5 (void)
+{
+	glbMessageArray;
 }
 
 /***************************************************************************//*!
 * \brief 
 *******************************************************************************/
-void TestStep_Step5 (void)
+void settesttimer (void)
 {
-	glbMessageArray;
+	TestTimer = Timer();
+}
+
+/***************************************************************************//*!
+* \brief 
+*******************************************************************************/
+void stoptesttimer (double *timeelapsed)
+{
+	*timeelapsed = Timer()-TestTimer;
 }
 //! \cond
 /// REGION END

@@ -1,6 +1,6 @@
 /***************************************************************************//*!
-* \file TestSteps.c
-* \author Biye Chen
+* \file HelperFunctions.c
+* \author Michael Harhay
 * \copyright Arxtron Technologies Inc.. All Rights Reserved.
 * \date 11/10/2022 11:34:01 PM
 * \brief This contains all the test steps used for this project.
@@ -21,9 +21,7 @@
 //==============================================================================
 // Include files
 
-#include "TestSteps.h"
-#include "Lib1.h"
-#include "HelperFunctions.c"
+#include "LogStruct.h"
 
 //==============================================================================
 // Constants
@@ -34,17 +32,22 @@
 //==============================================================================
 // Static global variables
 
-static LogStruct logContent;
-static short glbMessageArray[6] = {25928, 27756, 8303, 28503, 27762, 8548};
-
 //==============================================================================
 // Static functions
+
+//==============================================================================
+// External variables
+
+double TestTimer;
 
 //==============================================================================
 // Global variables
 
 //==============================================================================
 // Global functions
+
+void SetTestTimer (void);
+void StopTestTimer (double *TimeElapsed);
 
 //! \cond
 /// REGION END
@@ -54,71 +57,31 @@ static short glbMessageArray[6] = {25928, 27756, 8303, 28503, 27762, 8548};
 /***************************************************************************//*!
 * \brief 
 *******************************************************************************/
-int TestStep_Step1 (int NestNum, char *ReportText, tsErrorDataType *ErrInfo)
+void ParseLogs (char *LogPath, LogStruct *ParsedResults)
 {
-	TSInit;
+	FILE* fp = fopen (LogPath, "r");
 	
-	SetTestTimer();
 	
-	Error:
-		return error;
+	
+Error:
+	return error;
+}
+
+
+/***************************************************************************//*!
+* \brief 
+*******************************************************************************/
+void SetTestTimer (void)
+{
+	TestTimer = Timer();
 }
 
 /***************************************************************************//*!
 * \brief 
 *******************************************************************************/
-int TestStep_Step2 (int NestNum, char *ReportText, tsErrorDataType *ErrInfo)
+void StopTestTimer (double *TimeElapsed)
 {
-	TSInit;
-			
-	Error:
-		return error;
-}
-
-/***************************************************************************//*!
-* \brief 
-*******************************************************************************/
-int TestStep_Step4 (int NestNum, char *ReportText, tsErrorDataType *ErrInfo)
-{
-	TSInit;
-		
-	Error:
-		return error;
-}
-
-/***************************************************************************//*!
-* \brief 
-*******************************************************************************/
-int TestStep_Step3 (int NestNum, char *ReportText, tsErrorDataType *ErrInfo)
-{
-	TSInit;
-	
-	ParseLogs ("TestLog.log", &logContent);
-	
-	Error:
-		return error;
-}
-
-/***************************************************************************//*!
-* \brief 
-*******************************************************************************/
-int TestStep_Step4 (int NestNum, char *ReportText, tsErrorDataType *ErrInfo)
-{
-	TSInit;
-	
-	double TIME;
-	StopTestTimer(&TIME);
-	
-	Error:
-		return error;
-}
-
-/***************************************************************************//*!
-* \brief 
-*******************************************************************************/
-void TestStep_Step5 (void)
-{
-	glbMessageArray;
+	*TimeElapsed = Timer() - TestTimer;
 }
 //! \cond
 /// REGION END
