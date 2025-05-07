@@ -21,6 +21,8 @@
 //==============================================================================
 // Include files
 
+#include <utility.h>
+#include <ansi_c.h>
 #include "LogStruct.h"
 
 //==============================================================================
@@ -38,10 +40,12 @@
 //==============================================================================
 // External variables
 
-double TestTimer;
+extern double TestTimer;
 
 //==============================================================================
 // Global variables
+
+#define MAX_LINE_LEN 1024
 
 //==============================================================================
 // Global functions
@@ -60,11 +64,42 @@ void StopTestTimer (double *TimeElapsed);
 void ParseLogs (char *LogPath, LogStruct *ParsedResults)
 {
 	FILE* fp = fopen (LogPath, "r");
+	if (!fp) 
+	{
+		perror("Couldn't open file");
+	}
 	
+	char line[MAX_LINE_LEN];
+	int count = 0;
 	
-	
-Error:
-	return error;
+	// Read file, parse usling delimiter (comma)
+	while (count < 5)
+	{
+		char *token = strtok(line, ",");
+		if (!token) continue;
+		
+		switch (count % 5)
+		{
+			case 0:
+				strncpy(ParsedResults->TestName, token, MAX_LINE_LEN);
+			
+			case 1:
+				ParsedResults->TestNum = atoi(token);
+			
+			case 2:
+				strncpy(ParsedResults->TestVal, token, MAX_LINE_LEN);
+			
+			case 3:
+				strncpy(ParsedResults->TestLoLim, token, MAX_LINE_LEN);
+				
+			case 4:
+				strncpy(ParsedResults->TestHiLim, token, MAX_LINE_LEN);
+		}
+		
+		count++;
+	}	
+		   
+	fclose(fp);
 }
 
 

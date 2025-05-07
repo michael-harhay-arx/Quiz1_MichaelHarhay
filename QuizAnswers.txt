@@ -1,3 +1,6 @@
 Quiz 1:
 6. a) What is wrong with this commit? -> Incomplete git commit message.
    b) How would you resolve this problem? -> Use the command 'git commit --amend', and type in a more descriptive message.
+
+Part 2
+8. The redefinition error for AIOHandle is a result of a duplicate #include of Lib2.h. Since we don't want to change the definition or #include statement locations, we can simply include header guards to Lib2.h.

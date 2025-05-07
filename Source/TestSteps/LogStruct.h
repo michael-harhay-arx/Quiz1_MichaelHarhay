@@ -5,8 +5,8 @@
 * \date 11/10/2022 11:34:01 PM
 *******************************************************************************/
 
-#ifndef __TestSteps_H__
-#define __TestSteps_H__
+#ifndef __LogStruct_H__
+#define __LogStruct_H__
 
 //==============================================================================
 // Include files
@@ -31,4 +31,4 @@ typedef struct {
 //==============================================================================
 // Global functions
 
-#endif  /* ndef __TestSteps_H__ */
+#endif  /* ndef __LogStruct_H__ */

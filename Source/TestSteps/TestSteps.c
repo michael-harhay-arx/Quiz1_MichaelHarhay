@@ -22,8 +22,8 @@
 // Include files
 
 #include "TestSteps.h"
-#include "Lib1.h"
 #include "HelperFunctions.c"
+#include "LogStruct.h"
 
 //==============================================================================
 // Constants
@@ -71,17 +71,6 @@ int TestStep_Step2 (int NestNum, char *ReportText, tsErrorDataType *ErrInfo)
 {
 	TSInit;
 			
-	Error:
-		return error;
-}
-
-/***************************************************************************//*!
-* \brief 
-*******************************************************************************/
-int TestStep_Step4 (int NestNum, char *ReportText, tsErrorDataType *ErrInfo)
-{
-	TSInit;
-		
 	Error:
 		return error;
 }
