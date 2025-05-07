@@ -22,7 +22,7 @@
 // Include files
 
 #include "TestSteps.h"
-#include "HelperFunctions.c"
+#include "HelperFunctions.h"
 #include "LogStruct.h"
 
 //==============================================================================
@@ -42,6 +42,7 @@ static short glbMessageArray[6] = {25928, 27756, 8303, 28503, 27762, 8548};
 
 //==============================================================================
 // Global variables
+double TestTimer = 0;
 
 //==============================================================================
 // Global functions
@@ -82,7 +83,7 @@ int TestStep_Step3 (int NestNum, char *ReportText, tsErrorDataType *ErrInfo)
 {
 	TSInit;
 	
-	ParseLogs ("TestLog.log", &logContent);
+	ParseLogs("TestLog.log", &logContent);
 	
 	Error:
 		return error;

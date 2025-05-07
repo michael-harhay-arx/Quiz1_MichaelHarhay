@@ -4,3 +4,5 @@ Quiz 1:
 
 Part 2
 8. The redefinition error for AIOHandle is a result of a duplicate #include of Lib2.h. Since we don't want to change the definition or #include statement locations, we can simply include header guards to Lib2.h.
+
+11. TSInit is a macro that is the standard first line for a TestStand teststep function. It creates a char array "errmsg" that stores the msg from ErrInfo, and calls the macro "fnInit" that sets the error value to -99999 and sets the value of errmsg to 0 using the memset function.

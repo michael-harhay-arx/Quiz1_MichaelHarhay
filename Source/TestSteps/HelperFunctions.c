@@ -23,7 +23,7 @@
 
 #include <utility.h>
 #include <ansi_c.h>
-#include "LogStruct.h"
+#include "HelperFunctions.h"
 
 //==============================================================================
 // Constants
@@ -38,14 +38,10 @@
 // Static functions
 
 //==============================================================================
-// External variables
-
-extern double TestTimer;
-
-//==============================================================================
 // Global variables
 
 #define MAX_LINE_LEN 1024
+extern double TestTimer;
 
 //==============================================================================
 // Global functions
@@ -115,8 +111,31 @@ void SetTestTimer (void)
 * \brief 
 *******************************************************************************/
 void StopTestTimer (double *TimeElapsed)
-{
+{	
+	// If the timer has not started, return 0
+	if (!TestTimer)
+	{
+		perror("TestTimer has not been set.");
+		return;
+	}
+	
 	*TimeElapsed = Timer() - TestTimer;
+}
+
+/***************************************************************************//*!
+* \brief 
+*******************************************************************************/
+void IntArrToCharArr (int *IntArr, int IntArrSize, char **CharArr)
+{	
+	// Iterate through each int, convert to string
+	for (int i = 0; i < IntArrSize; i++)
+	{
+		char string[128];
+		
+		sprintf(string, "%d", IntArr[i]);
+		
+		CharArr[i] = string;
+	}
 }
 //! \cond
 /// REGION END
